@@ -1,9 +1,8 @@
 import {BaseModel} from './base.model';
 
-export class CheckTaskModel extends BaseModel {
+export class CodeLibModel extends BaseModel {
   name?: string;
   description?: string;
-  type?: string;
-  module?: string;
+  type ?= 'github';
   url?: string;
 }

@@ -3,15 +3,18 @@
     <el-input placeholder="请输入关键字" icon="search" [model]="search"></el-input>
   </div>
   <div el-col span="1">
-    <el-button type="primary">新建</el-button>
+    <el-button type="primary" (click)="card.toggle = true">新建</el-button>
   </div>
 </div>
+<!-- data table -->
 <el-table [model]="tableData" [stripe]="true">
   <el-table-column model-key="name" label="任务名称">
   </el-table-column>
   <el-table-column model-key="description" label="描述">
   </el-table-column>
   <el-table-column model-key="type" label="类型">
+  </el-table-column>
+  <el-table-column model-key="module" label="模块">
   </el-table-column>
   <el-table-column model-key="author" label="创建人">
   </el-table-column>
@@ -22,8 +25,50 @@
   </el-table-column>
   <el-table-column label="操作">
     <ng-template #slot let-scope="scope">
-      <el-button type="text" size="small" (click)="handle(scope)">编辑</el-button>
-      <el-button type="text" size="small" (click)="handle(scope)">删除</el-button>
+      <el-button type="text" size="small" (click)="handle(scope.rowData)">编辑</el-button>
+      <el-button type="text" size="small" (click)="handle(scope.rowData)">配置</el-button>
+      <el-button type="text" size="small" (click)="exec(scope.rowData)">执行</el-button>
+      <el-button type="text" size="small" (click)="handle(scope.rowData)">删除</el-button>
     </ng-template>
   </el-table-column>
 </el-table>
+<!-- dialog -->
+<div class="box-card" #card>
+  <el-dialog [(visible)]="card.toggle">
+    <ng-template #title>
+      <span><i class="el-icon-setting"></i>新建任务</span>
+    </ng-template>
+    <el-form [formGroup]="validateForm" label-width="100px"
+             [show-icon]="true" [show-message]="true">
+
+      <el-form-item label="名称" [required]="true"
+                    [status]="statusCtrl('name')" [error]="messageCtrl('name')">
+        <el-input [(model)]="createdTask.name" formControlName="name"></el-input>
+      </el-form-item>
+
+      <el-form-item label="描述"
+                    [status]="statusCtrl('description')" [error]="messageCtrl('description')">
+        <el-input [(model)]="createdTask.description" formControlName="description" type="textarea" [rows]="2" placeholder="请输入描述内容"></el-input>
+      </el-form-item>
+
+      <el-form-item label="类型" [status]="statusCtrl('type')" [error]="messageCtrl('type')">
+        <el-select [(model)]="createdTask.type" formControlName="type" placeholder="请选择">
+          <el-option label="jenkins" value="jenkins"></el-option>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="模块" required [status]="statusCtrl('module')" [error]="messageCtrl('module')">
+        <el-select [(model)]="createdTask.module" formControlName="module" placeholder="请选择">
+          <el-option label="TsLint" value="TsLint"></el-option>
+          <el-option label="Checkstyle" value="Checkstyle"></el-option>
+        </el-select>
+      </el-form-item>
+
+    </el-form>
+    <ng-template #footer>
+      <el-button type="primary" (click)="submit()">提交</el-button>
+      <el-button (click)="reset()">重置</el-button>
+      <el-button (click)="card.toggle = false">取消</el-button>
+    </ng-template>
+  </el-dialog>
+</div>

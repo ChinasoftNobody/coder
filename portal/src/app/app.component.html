@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<el-menu [model]="0" (modelChange)="handle($event)" class="el-menu-demo" mode="horizontal" el-row>
-  <div el-col span="21">
+<el-menu model="1" class="el-menu-demo" mode="horizontal" el-row>
+  <div el-col span="19">
     <el-menu-item index="1" to="/">首页</el-menu-item>
     <el-submenu index="2" title="代码">
       <el-menu-item index="2-1" to="/code/lib">托管</el-menu-item>
@@ -8,8 +8,13 @@
     </el-submenu>
   </div>
   <div el-col span="2">
-    <el-submenu index="3" [title]="title">
-      <el-menu-item index="3-1">退出登录</el-menu-item>
+    <el-submenu index="3" [title]="group.name">
+      <el-menu-item index="3-1">我的服务组</el-menu-item>
+    </el-submenu>
+  </div>
+  <div el-col span="2">
+    <el-submenu index="4" [title]="title">
+      <el-menu-item index="4-1">退出登录</el-menu-item>
     </el-submenu>
   </div>
 </el-menu>

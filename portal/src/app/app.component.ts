@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {GroupModel} from './data/group.model';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,5 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'Maysham';
-
-  handle($event: any) {
-
-  }
+  group: GroupModel = {name: '我的服务组'};
 }
