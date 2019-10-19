@@ -1,0 +1,13 @@
+<div el-row>
+  <div el-col span="8" *ngFor="let item of [0, 1]" [offset]="item > 0 ? 2 : 0">
+    <el-card body-style="padding: 0px">
+      <div style="padding: 14px;">
+        <span>好吃的汉堡</span>
+        <div class="bottom clearfix">
+          <time class="time">{{ currentDate() | date: 'dd/MM/yyyy' }}</time>
+          <el-button type="text" class="button">操作按钮</el-button>
+        </div>
+      </div>
+    </el-card>
+  </div>
+</div>

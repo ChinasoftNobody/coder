@@ -1,0 +1,22 @@
+<div el-row>
+  <div el-col span="23">
+    <el-input placeholder="请输入关键字" icon="search" [model]="search"></el-input>
+  </div>
+  <div el-col span="1">
+    <el-button type="primary">新建</el-button>
+  </div>
+</div>
+<el-table [model]="tableData" [stripe]="true">
+  <el-table-column model-key="name" label="服务名称" width="140">
+  </el-table-column>
+  <el-table-column model-key="description" label="描述" width="140">
+  </el-table-column>
+  <el-table-column model-key="type" label="类型">
+  </el-table-column>
+  <el-table-column model-key="url" label="地址">
+  </el-table-column>
+  <el-table-column model-key="author" label="创建人">
+  </el-table-column>
+  <el-table-column model-key="createdOn" label="创建时间">
+  </el-table-column>
+</el-table>
